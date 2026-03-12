@@ -1,11 +1,42 @@
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@import "tailwindcss";
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Brand Colors (v4 uses CSS variables) */
+    --color-brand-light: #FDF2E9;
+    --color-brand-100: #FFE8D6;
+    --color-brand-200: #FFC9A3;
+    --color-brand-300: #FFA06B;
+    --color-brand: #E67E22;
+    --color-brand-700: #C35412;
+    --color-brand-800: #9B300D;
+    --color-brand-900: #7A1F09;
+    --color-brand-dark: #C0392B;
+    --color-text: #2C3E50;
+
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 border border-transparent 
+               text-base font-medium rounded-md shadow-sm text-white 
+               bg-brand hover:bg-brand-dark transition-colors duration-200 
+               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-300;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-6 py-3 border border-brand-200 
+               text-base font-medium rounded-md text-brand-900 bg-brand-light 
+               hover:bg-brand-100 transition-colors duration-200;
+    }
+
+    .input-field {
+        @apply block w-full px-4 py-3 rounded-md border-gray-300 text-text
+               shadow-sm focus:ring-brand focus:border-brand 
+               placeholder-gray-400 sm:text-sm transition-all duration-200;
+    }
+
+    .form-label {
+        @apply block text-sm font-semibold text-text mb-1;
+    }
 }
