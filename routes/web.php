@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
+Route::get('/', [DishController::class, 'home'])->name('home');
 
 Route::view('/menu', 'menu.index');
+Route::get('/menu', [DishController::class, 'index'])->name('menu.index');
 
 Route::get('/contact', [ContactController::class, 'ShowForm']);
 Route::post('/contact',[ContactController::class, 'storeMessage']);

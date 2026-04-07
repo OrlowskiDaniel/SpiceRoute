@@ -24,35 +24,39 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {{-- @foreach($dishes as $dish) --}}
-        <div class="group bg-white rounded-3xl shadow-sm border border-brand-100 overflow-hidden hover:shadow-2xl transition-all duration-300">
-            <div class="relative overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
-                    <span class="text-xs font-bold text-brand-900 uppercase tracking-wider">🔥 Popular</span>
-                </div>
-            </div>
-
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-2">
-                    <h2 class="text-2xl font-bold text-text group-hover:text-brand transition-colors">Butter Chicken</h2>
-                    <span class="text-xl font-black text-brand-700">€12.00</span>
-                </div>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6">A mild, creamy tomato-based curry...</p>
-
-                <div class="flex items-center justify-between pt-4 border-t border-gray-50">
-                    <span class="text-xs font-bold px-2 py-1 bg-green-50 text-green-700 rounded-md">Gluten Free</span>
-                    
-                    <button class="btn-primary !py-2 !px-4 !rounded-xl text-sm flex items-center gap-2 group/btn active:scale-95 transition-all">
-                        <span>Add to Cart</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
-                        </svg>
-                    </button>
-                </div>
+@foreach($dishes as $dish)
+    <div class="group bg-white rounded-3xl shadow-sm border border-brand-100 overflow-hidden hover:shadow-2xl transition-all duration-300">
+        <div class="relative overflow-hidden">
+            {{-- Dynamic Image --}}
+            <img src="{{ $dish->image }}" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
+                <span class="text-xs font-bold text-brand-900 uppercase tracking-wider">🔥 Popular</span>
             </div>
         </div>
-        {{-- @endforeach --}}
+
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+                {{-- Dynamic Name & Price --}}
+                <h2 class="text-2xl font-bold text-text group-hover:text-brand transition-colors">{{ $dish->name }}</h2>
+                <span class="text-xl font-black text-brand-700">€{{ number_format($dish->price, 2) }}</span>
+            </div>
+            
+            {{-- Dynamic Description --}}
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">{{ $dish->description }}</p>
+
+            <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                <span class="text-xs font-bold px-2 py-1 bg-green-50 text-green-700 rounded-md">Gluten Free</span>
+                
+                <button class="btn-primary !py-2 !px-4 !rounded-xl text-sm flex items-center gap-2 group/btn active:scale-95 transition-all">
+                    <span>Add to Cart</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    @endforeach
     </div>
 </div>
 @endsection
