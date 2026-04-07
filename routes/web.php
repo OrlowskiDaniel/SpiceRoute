@@ -30,3 +30,6 @@ Route::view('/admin/orders', 'admin.orders.index');
 Route::get('/admin/messages', [MessageController::class, 'index']);
 
 Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+
+
+Route::view('/admin/users', 'admin.users.index');
