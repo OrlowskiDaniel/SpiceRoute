@@ -34,25 +34,15 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        @php
-            $dishes = [
-                ['name' => 'Butter Chicken', 'desc' => 'Creamy tomato-based curry with succulent chicken.', 'price' => '$14'],
-                ['name' => 'Tandoori Chicken', 'desc' => 'Grilled chicken marinated in yogurt and spices.', 'price' => '$12'],
-                ['name' => 'Vegetable Curry', 'desc' => 'Seasonal vegetables simmered in a robust spicy sauce.', 'price' => '$11'],
-            ];
-        @endphp
 
         @foreach($dishes as $dish)
         <div class="group bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
             <div class="w-12 h-12 bg-brand-light rounded-lg flex items-center justify-center mb-4 group-hover:bg-brand group-hover:text-white transition-colors">
                 <span class="font-bold">🌶️</span>
             </div>
-            <h3 class="font-bold text-xl text-text mb-2">{{ $dish['name'] }}</h3>
-            <p class="text-gray-500 text-sm leading-relaxed mb-4">
-                {{ $dish['desc'] }}
-            </p>
+            <h3 class="font-bold text-xl text-text mb-2">{{ $dish->name }}</h3>
             <div class="flex items-center justify-between">
-                <span class="text-brand-800 font-bold text-lg">{{ $dish['price'] }}</span>
+                <span class="text-brand-800 font-bold text-lg">{{ $dish->price }}</span>
                 <button class="text-sm font-bold text-brand hover:text-brand-dark">Add to Cart +</button>
             </div>
         </div>

@@ -38,6 +38,11 @@
                     <span>⚡</span> Live Orders
                 </a>
 
+                <a href="/admin/users" 
+                class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all {{ request()->is('admin/users*') ? 'bg-white/10 text-brand font-bold shadow-inner' : 'hover:bg-white/5 text-gray-400 hover:text-white' }}">
+                    <span>📅</span> Menage Users
+                </a>
+
                 <a href="/admin/messages" 
                 class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all {{ request()->is('admin/messages*') ? 'bg-white/10 text-brand font-bold shadow-inner' : 'hover:bg-white/5 text-gray-400 hover:text-white' }}">
                     <span>📩</span> Messages
