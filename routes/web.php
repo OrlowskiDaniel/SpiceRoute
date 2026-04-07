@@ -6,7 +6,8 @@ Route::view('/', 'home');
 
 Route::view('/menu', 'menu.index');
 
-Route::view('/contact', 'contact');
+Route::get('/contact', [ContactController::class, 'ShowForm']);
+Route::post('/contact',[ContactController::class, 'storeMessage']);
 
 Route::view('/reservations', 'orders.reservations.create');
 
@@ -26,4 +27,6 @@ Route::view('/admin/reservations', 'admin.reservations.index');
 
 Route::view('/admin/orders', 'admin.orders.index');
 
-Route::view('/admin/messages', 'admin.messages.index');
+Route::get('/admin/messages', [MessageController::class, 'index']);
+
+Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');

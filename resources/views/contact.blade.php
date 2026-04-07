@@ -15,6 +15,32 @@
         <div class="bg-white shadow-xl shadow-brand-100/50 rounded-2xl p-8 border border-brand-100">
             <form method="POST" action="/contact" class="space-y-6">
                 @csrf
+                @method('POST')
+
+                @if (session('success'))
+                <div class="mb-6 p-4 bg-green-50 border-l-4 border-green-500 rounded-r-xl flex items-center shadow-sm">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-green-800">
+                            {{ session('success') }}
+                        </p>
+                    </div>
+                </div>
+                @endif
+                @if ($errors ->any())
+                <div class="m-2 p-2 border-2 border-red-500 rounded-md">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 <div>
                     <label for="name" class="form-label">Full Name</label>
