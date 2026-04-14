@@ -26,6 +26,8 @@ Route::view('/checkout', 'orders.checkout');
 Route::post('/orders', [OrderController::class, 'store']);
 Route::view('/success', 'orders.success');
 
+// Admin
+Route::get('/admin', [DashboardController::class, 'index']);
 
 Route::view('/admin', 'admin.dashboard');
 
