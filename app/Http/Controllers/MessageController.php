@@ -18,5 +18,12 @@ class MessageController extends Controller
         return redirect('/admin/messages');
     }
 
+    public function reply(Request $request, ContactMessage $message)
+    {
+        $message->update([
+            'is_replied' => true
+        ]);
 
+        return back()->with('success', 'Reply sent!');
+    }
 }
