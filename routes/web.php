@@ -26,7 +26,10 @@ Route::view('/admin', 'admin.dashboard');
 
 Route::view('/admin/dishes', 'admin.dishes.index');
 
-Route::view('/admin/dishes/create', 'admin.dishes.create');
+Route::get('/admin/dishes', [DishController::class, 'indexAdmin']);
+Route::get('/admin/dishes/create', [DishController::class, 'create']);
+Route::post('/admin/dishes', [DishController::class, 'store']);
+Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
 
 Route::view('/admin/reservations', 'admin.reservations.index');
 

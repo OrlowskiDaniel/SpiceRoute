@@ -25,6 +25,7 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-gray-50 border-b border-gray-100">
+                        <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Image</th>
                         <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Dish Information</th>
                         <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Category</th>
                         <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Price</th>
@@ -32,53 +33,61 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
-                    {{-- @foreach($dishes as $dish) --}}
-                    <tr class="hover:bg-brand-light/30 transition-colors group">
+                    @foreach($dishes as $dish)
+                    <tr class="hover:bg-brand-light/20 transition-colors">
                         <td class="p-6">
                             <div class="flex items-center gap-4">
-                                <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=100&q=80" 
-                                     class="w-12 h-12 rounded-xl object-cover shadow-sm">
+                                <img src="{{ $dish->image }}" class="w-12 h-12 rounded-xl object-cover shadow-sm">
+                            </div>
+                        </td>
+
+                        <td class="p-6">
+                            <div class="flex items-center gap-4">
                                 <div>
-                                    <p class="font-bold text-text group-hover:text-brand transition-colors">Butter Chicken</p>
-                                    <p class="text-xs text-gray-400">Mild & Creamy</p>
+                                    <p class="font-bold text-text">{{ $dish->name }}</p>
+                                    <p class="text-xs text-gray-400">{{ $dish->description }}</p>
                                 </div>
                             </div>
                         </td>
+
                         <td class="p-6">
-                            <span class="px-3 py-1 bg-brand-100 text-brand-800 text-[10px] font-black uppercase rounded-full tracking-tighter">
-                                Curry
+                            <span class="text-xs text-brand font-bold uppercase tracking-wider">{{ $dish->category }}</span>
+                        </td>
+
+                        <td class="p-6">
+                            <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-gray-100 font-black text-text">
+                                €{{ $dish->price }}
                             </span>
                         </td>
-                        <td class="p-6">
-                            <span class="font-black text-text">€12.00</span>
-                        </td>
-                        <td class="p-6">
-                            <div class="flex justify-end gap-3">
-                                <a href="#" class="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
+
+                        <td class="p-6 text-right">
+                            <div class="flex justify-end gap-2">
+                                <a href="/admin/dishes/{{ $dish->id }}/edit" class="p-2 text-gray-400 hover:text-brand hover:bg-brand-light rounded-lg transition-all">
+                                    Edit
                                 </a>
-                                <button class="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </button>
+                                <form method="POST" action="/admin/dishes/{{ $dish->id }}" onsubmit="return confirm('Delete dish?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="p-2 text-gray-400 hover:text-red-600 transition-colors rounded-lg">
+                                        <span class="sr-only">Delete</span>
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
         
-        <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 flex justify-between items-center text-xs font-bold text-gray-400">
+        <!-- <div class="bg-gray-50 px-6 py-4 border-t border-gray-100 flex justify-between items-center text-xs font-bold text-gray-400">
             <span>Showing 1 to 10 of 42 dishes</span>
             <div class="flex gap-2">
                 <button class="px-3 py-1 rounded border border-gray-200 bg-white hover:bg-gray-50">Prev</button>
                 <button class="px-3 py-1 rounded border border-gray-200 bg-white hover:bg-gray-50">Next</button>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection
