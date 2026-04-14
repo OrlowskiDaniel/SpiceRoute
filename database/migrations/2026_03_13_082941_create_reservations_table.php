@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->date('reservation_date');
             $table->time('reservation_time');
-            $table->integer('guets');
+            $table->integer('guests');
             $table->string('status');
         });
     }

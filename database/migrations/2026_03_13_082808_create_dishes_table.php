@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description');
             $table->decimal('price', 8, 2);
+            $table->string('category');
             $table->string('image')->nullable();
         });
     }
