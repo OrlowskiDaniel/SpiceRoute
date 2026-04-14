@@ -1,3 +1,12 @@
+@php
+$cart = session('cart', []);
+$total = 0;
+
+foreach($cart as $item) {
+    $total += $item['price'] * $item['quantity'];
+}
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -7,7 +16,7 @@
         <div>
             <h2 class="text-3xl font-black text-text mb-8">Delivery <span class="text-brand">Details</span></h2>
             
-            <form action="/orders" method="POST" class="space-y-8">
+            <form action="{{ url('/orders') }}" method="POST" class="space-y-8">
                 @csrf
                 
                 <div class="space-y-4">
@@ -51,23 +60,29 @@
             <div class="bg-white p-10 rounded-3xl border border-brand-100 shadow-sm sticky top-24">
                 <h3 class="text-xl font-bold mb-6">Order Summary</h3>
                 <div class="space-y-4 border-b border-gray-50 pb-6">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center gap-3">
-                            <span class="bg-brand-light text-brand font-bold px-2 py-1 rounded-lg text-xs">1x</span>
-                            <span class="font-medium text-text">Butter Chicken</span>
+                    @foreach($cart as $item)
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-brand-light text-brand font-bold px-2 py-1 rounded-lg text-xs">
+                                    {{ $item['quantity'] }}x
+                                </span>
+                                <span class="font-medium text-text">{{ $item['name'] }}</span>
+                            </div>
+                            <span class="font-bold text-text">
+                                €{{ $item['price'] * $item['quantity'] }}
+                            </span>
                         </div>
-                        <span class="font-bold text-text">€12.00</span>
-                    </div>
+                    @endforeach
                 </div>
                 
                 <div class="pt-6 space-y-3">
                     <div class="flex justify-between text-gray-500 text-sm">
                         <span>Subtotal</span>
-                        <span>€12.00</span>
+                        <span>€{{ $total }}</span>
                     </div>
                     <div class="flex justify-between text-lg font-black text-text pt-2">
                         <span>Total to pay</span>
-                        <span class="text-brand">€12.00</span>
+                        <span class="text-brand">€{{ $total }}</span>
                     </div>
                 </div>
             </div>

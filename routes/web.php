@@ -21,6 +21,10 @@ Route::post('/reservations', [ReservationController::class, 'store']);
 
 Route::view('/cart', 'cart.index');
 
+// Orders
+Route::view('/checkout', 'orders.checkout');
+Route::post('/orders', [OrderController::class, 'store']);
+Route::view('/success', 'orders.success');
 
 
 Route::view('/admin', 'admin.dashboard');
@@ -35,7 +39,10 @@ Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
 Route::get('/admin/reservations', [ReservationController::class, 'index']);
 Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'destroy']);
 
-Route::view('/admin/orders', 'admin.orders.index');
+Route::get('/admin/orders', [OrderController::class, 'index']);
+Route::get('/admin/orders/{order}', [OrderController::class, 'show']);
+Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy']);
+Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
 
 Route::get('/admin/messages', [MessageController::class, 'index']);
 Route::get('/admin/users', [UserController::class, 'index']);

@@ -24,10 +24,26 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="md:w-2/3 p-10 lg:p-16">
+            @if(session('success'))
+                <div class="mb-6 p-4 bg-green-100 text-green-800 rounded-xl">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="mb-6 p-4 bg-red-100 text-red-800 rounded-xl">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>- {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="POST" action="/reservations" class="space-y-6">
                 @csrf
+                <input type="hidden" name="status" value="pending">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="col-span-1">
@@ -42,12 +58,12 @@
 
                     <div class="col-span-1">
                         <label class="form-label">Date</label>
-                        <input type="date" name="date" class="input-field" required>
+                        <input type="date" name="reservation_date" class="input-field" required>
                     </div>
 
                     <div class="col-span-1">
                         <label class="form-label">Time</label>
-                        <input type="time" name="time" class="input-field" required>
+                        <input type="time" name="reservation_time" class="input-field" required>
                     </div>
 
                     <div class="col-span-2">

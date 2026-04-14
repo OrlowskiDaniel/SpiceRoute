@@ -13,7 +13,9 @@
         </div>
 
         <h1 class="text-4xl font-black text-text mb-2">Order Confirmed!</h1>
-        <p class="text-brand font-bold mb-6 tracking-widest uppercase text-sm">Order #SR-8821</p>
+        <p class="text-brand font-bold mb-6 tracking-widest uppercase text-sm">
+            Order placed successfully
+        </p>
         
         <div class="bg-brand-light rounded-2xl p-6 mb-8 text-left">
             <p class="text-gray-600 text-sm leading-relaxed text-center">
