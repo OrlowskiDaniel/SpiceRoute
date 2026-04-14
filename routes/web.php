@@ -1,20 +1,21 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\MessageController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
-Route::view('/', 'home');
+// Public
 Route::get('/', [DishController::class, 'home'])->name('home');
-
-Route::view('/menu', 'menu.index');
 Route::get('/menu', [DishController::class, 'index'])->name('menu.index');
 
-Route::get('/contact', [ContactController::class, 'ShowForm']);
-Route::post('/contact',[ContactController::class, 'storeMessage']);
-
-Route::view('/reservations', 'orders.reservations.create');
+Route::get('/contact', [ContactController::class, 'showForm']);
+Route::post('/contact', [ContactController::class, 'storeMessage']);
 
 Route::get('/reservations', [ReservationController::class, 'create']);
 Route::post('/reservations', [ReservationController::class, 'store']);
@@ -29,9 +30,9 @@ Route::view('/success', 'orders.success');
 // Admin
 Route::get('/admin', [DashboardController::class, 'index']);
 
-Route::view('/admin', 'admin.dashboard');
-
-Route::view('/admin/dishes', 'admin.dishes.index');
+Route::get('/admin/messages', [MessageController::class, 'index']);
+Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy']);
+Route::post('/admin/messages/{message}/reply', [MessageController::class, 'reply']);
 
 Route::get('/admin/dishes', [DishController::class, 'indexAdmin']);
 Route::get('/admin/dishes/create', [DishController::class, 'create']);
@@ -46,11 +47,11 @@ Route::get('/admin/orders/{order}', [OrderController::class, 'show']);
 Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy']);
 Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
 
-Route::get('/admin/messages', [MessageController::class, 'index']);
 Route::get('/admin/users', [UserController::class, 'index']);
 Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);
 
-Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 
+Route::post('/cart/add/{dish}', [CartController::class, 'add']);
+Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart/remove/{dish}', [CartController::class, 'remove']);
 
-Route::view('/admin/users', 'admin.users.index');

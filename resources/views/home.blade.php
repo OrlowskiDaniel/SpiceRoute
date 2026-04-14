@@ -43,7 +43,6 @@
             <h3 class="font-bold text-xl text-text mb-2">{{ $dish->name }}</h3>
             <div class="flex items-center justify-between">
                 <span class="text-brand-800 font-bold text-lg">{{ $dish->price }}</span>
-                <button class="text-sm font-bold text-brand hover:text-brand-dark">Add to Cart +</button>
             </div>
         </div>
         @endforeach
