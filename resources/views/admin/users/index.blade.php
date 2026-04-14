@@ -18,6 +18,7 @@
         <table class="w-full text-left">
             <thead>
                 <tr class="bg-gray-50 border-b border-gray-100">
+                    <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">ID</th>
                     <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Name&Email</th>
                     <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Account creation</th>
                     <th class="p-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Role</th>
@@ -25,27 +26,35 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-50">
-                
+                @foreach($users as $user)
                 <tr class="hover:bg-brand-light/20 transition-colors">
                     <td class="p-6">
-                        <p class="font-bold text-text">Arjun Singh</p>
-                        <p class="text-xs text-gray-400">arjun@example.com</p>
+                        <p class="font-bold text-text"> {{ $user->id }}</p>
                     </td>
                     <td class="p-6">
-                        <p class="font-bold text-text">March 15, 2026</p>
-                        <p class="text-xs text-brand font-bold uppercase">19:30 PM</p>
+                        <p class="font-bold text-text">{{ $user->name }}</p>
+                        <p class="text-xs text-gray-400">{{ $user->email }}</p>
+                    </td>
+                    <td class="p-6">
+                        <p class="font-bold text-text">{{ $user->created_at }}</p>
                     </td>
                     <td class="p-6">
                         <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full">Customer</span>
                     </td>
                     <td class="p-6 text-right">
                         <div class="flex justify-end gap-2">
-                            <button class="p-2 text-gray-400 hover:text-brand hover:bg-brand-light rounded-lg transition-all">Edit</button>
-                            <button class="p-2 text-gray-400 hover:text-red-600 rounded-lg">×</button>
+                            <a href="/admin/users/{{ $user->id }}/edit" class="p-2 text-gray-400 hover:text-brand hover:bg-brand-light rounded-lg transition-all">
+                                Edit
+                            </a>
+                            <form method="POST" action="/admin/users/{{ $user->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="p-2 text-gray-400 hover:text-red-600 rounded-lg">×</button>
+                            </form>
                         </div>
                     </td>
                 </tr>
-                
+                @endforeach
             </tbody>
         </table>
     </div>
