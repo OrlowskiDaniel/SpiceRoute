@@ -16,7 +16,8 @@ Route::post('/contact',[ContactController::class, 'storeMessage']);
 
 Route::view('/reservations', 'orders.reservations.create');
 
-Route::view('/login', 'auth.login');
+Route::get('/reservations', [ReservationController::class, 'create']);
+Route::post('/reservations', [ReservationController::class, 'store']);
 
 Route::view('/cart', 'cart.index');
 
@@ -31,7 +32,8 @@ Route::get('/admin/dishes/create', [DishController::class, 'create']);
 Route::post('/admin/dishes', [DishController::class, 'store']);
 Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
 
-Route::view('/admin/reservations', 'admin.reservations.index');
+Route::get('/admin/reservations', [ReservationController::class, 'index']);
+Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'destroy']);
 
 Route::view('/admin/orders', 'admin.orders.index');
 

@@ -26,30 +26,34 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-50">
-                {{-- @foreach($reservations as $res) --}}
+                @foreach($reservations as $res)
                 <tr class="hover:bg-brand-light/20 transition-colors">
                     <td class="p-6">
-                        <p class="font-bold text-text">Arjun Singh</p>
-                        <p class="text-xs text-gray-400">arjun@example.com</p>
+                        <p class="font-bold text-text">{{ $res->name }}</p>
+                        <p class="text-xs text-gray-400">{{ $res->email }}</p>
                     </td>
                     <td class="p-6">
-                        <p class="font-bold text-text">March 15, 2026</p>
-                        <p class="text-xs text-brand font-bold uppercase">19:30 PM</p>
+                        <p class="font-bold text-text">{{ $res->reservation_date }}</p>
+                        <p class="text-xs text-brand font-bold uppercase">{{ $res->reservation_time }}</p>
                     </td>
                     <td class="p-6 text-center">
-                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 font-black text-text">4</span>
+                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 font-black text-text">{{ $res->guests }}</span>
                     </td>
                     <td class="p-6">
-                        <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full">Confirmed</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full">{{ $res->status }}</span>
                     </td>
                     <td class="p-6 text-right">
                         <div class="flex justify-end gap-2">
-                            <button class="p-2 text-gray-400 hover:text-brand hover:bg-brand-light rounded-lg transition-all">Check-in</button>
-                            <button class="p-2 text-gray-400 hover:text-red-600 rounded-lg">×</button>
+                            <form method="POST" action="/admin/reservations/{{ $res->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="p-2 text-gray-400 hover:text-red-600 rounded-lg">Delete</button>
+                            </form>
+                            
                         </div>
                     </td>
                 </tr>
-                {{-- @endforeach --}}
+                @endforeach
             </tbody>
         </table>
     </div>

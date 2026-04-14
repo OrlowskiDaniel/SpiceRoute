@@ -9,20 +9,20 @@
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
         <div class="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm">
-            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Today's Orders</p>
-            <p class="text-3xl font-black text-text">24</p>
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Orders</p>
+            <p class="text-3xl font-black text-text">{{ $ordersCount }}</p>
         </div>
         <div class="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm">
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Reservations</p>
-            <p class="text-3xl font-black text-brand">8</p>
+            <p class="text-3xl font-black text-brand">{{ $reservationsCount }}</p>
         </div>
         <div class="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm">
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Revenue</p>
-            <p class="text-3xl font-black text-text">€1,420</p>
+            <p class="text-3xl font-black text-text">€{{ $revenue }}</p>
         </div>
         <div class="bg-white p-6 rounded-3xl border border-brand-100 shadow-sm">
-            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Staff</p>
-            <p class="text-3xl font-black text-text">6</p>
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Messages</p>
+            <p class="text-3xl font-black text-text">{{ $messagesCount }}</p>
         </div>
     </div>
 
