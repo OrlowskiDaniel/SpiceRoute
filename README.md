@@ -57,3 +57,28 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Start and add mock data
+
+Add to your Herd sites folder
+
+In your env file fill in important stuff(use env.example).
+
+Then start Herd and in bash:
+npm run dev
+
+For mock data, bash:
+php artisan migrate:fresh --seed
+
+## Admin user 
+
+Make your own user
+
+bash:
+
+php artisan tinker
+php\App\Models\User::create([
+    'name'     => 'Admin',
+    'email'    => 'manager@spiceroute.com',
+    'password' => bcrypt('your-password'),
+]);
