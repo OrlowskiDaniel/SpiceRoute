@@ -74,7 +74,7 @@ php artisan migrate:fresh --seed
 
 Make your own user
 
-bash:
+''bash:
 
 php artisan tinker
 php\App\Models\User::create([
