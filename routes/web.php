@@ -9,6 +9,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+
 
 // Public
 Route::get('/', [DishController::class, 'home'])->name('home');
@@ -29,10 +31,15 @@ Route::view('/success', 'orders.success');
 
 // Admin
 Route::get('/admin', [DashboardController::class, 'index']);
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/admin/messages', [MessageController::class, 'index']);
 Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy']);
 Route::post('/admin/messages/{message}/reply', [MessageController::class, 'reply']);
+// middleware for admin routes
+Route::middleware('auth')->group(function () {
 
 Route::get('/admin/dishes', [DishController::class, 'indexAdmin']);
 Route::get('/admin/dishes/create', [DishController::class, 'create']);
@@ -46,6 +53,7 @@ Route::get('/admin/orders', [OrderController::class, 'index']);
 Route::get('/admin/orders/{order}', [OrderController::class, 'show']);
 Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy']);
 Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
+});
 
 Route::get('/admin/users', [UserController::class, 'index']);
 Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);

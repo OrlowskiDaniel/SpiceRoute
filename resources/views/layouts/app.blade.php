@@ -31,6 +31,17 @@
                 <a href="/menu" class="font-semibold text-gray-600 hover:text-brand transition-colors">Menu</a>
                 <a href="/contact" class="font-semibold text-gray-600 hover:text-brand transition-colors">Contact</a>
                 <a href="/reservations" class="btn-primary !py-2 !px-5 !text-sm">Book a Table</a>
+
+                @auth
+                    <form action="/logout" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="font-semibold text-gray-600 hover:text-brand transition-colors">
+                            Logout
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-brand transition-colors">Staff Login</a>
+                @endauth
             </div>
 
             <button class="md:hidden text-text">

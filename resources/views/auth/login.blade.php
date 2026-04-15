@@ -24,7 +24,7 @@
             </div>
 
             <div class="p-8 sm:p-10">
-                <form action="POST" class="space-y-6">
+                <form action="/login" method="POST" class="space-y-6">
                     @csrf
 
                     <div>
