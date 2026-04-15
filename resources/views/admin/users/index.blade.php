@@ -10,7 +10,7 @@
         
         <div class="flex gap-3">
             <button class="bg-white border border-brand-100 px-4 py-2 rounded-xl font-bold text-sm hover:bg-brand-light transition">Export List</button>
-            <button class="btn-primary !py-2 !px-5 !text-sm">Add user +</button>
+            <a href="/admin/users/create" class="btn-primary !py-2 !px-5 !text-sm">Add User +</a>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
                         <p class="font-bold text-text">{{ $user->created_at }}</p>
                     </td>
                     <td class="p-6">
-                        <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full">Customer</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full">{{ $user->role }}</span>
                     </td>
                     <td class="p-6 text-right">
                         <div class="flex justify-end gap-2">

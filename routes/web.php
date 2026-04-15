@@ -65,6 +65,10 @@ Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStat
     Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'destroy']);
     Route::get('/admin/reservations/create', [ReservationController::class, 'adminCreate']);
     Route::post('/admin/reservations', [ReservationController::class, 'adminStore']);
+    Route::get('/admin/users', [UserController::class, 'index']);
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);
+    Route::get('/admin/users/create', [UserController::class, 'create']);
+    Route::post('/admin/users', [UserController::class, 'store']);
 });
 
 Route::get('/admin/users', [UserController::class, 'index']);
