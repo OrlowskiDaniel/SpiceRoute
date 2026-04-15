@@ -14,11 +14,13 @@ class StoreDishRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:2',
-            'description' => 'required|min:5',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|in:curry,tandoor,starter,side,drink',
-            'image' => 'nullable|image|max:2048',
+            'name'        => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'price'       => ['required', 'numeric', 'min:0'],
+            'category'    => ['required', 'string'],
+            'image'       => ['nullable', 'image', 'max:2048'],
+            'is_spicy'    => ['nullable', 'boolean'],
+            'is_popular'  => ['nullable', 'boolean'],
         ];
     }
 }

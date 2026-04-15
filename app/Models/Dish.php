@@ -12,7 +12,12 @@ class Dish extends Model
 
     use HasFactory; 
 
-    protected $fillable = ['user_id', 'name', 'descripton', 'price', 'category', 'image'];
+    protected $fillable = ['user_id', 'name', 'description', 'price', 'category', 'image', 'is_spicy', 'is_popular',];
+
+    protected $casts = [
+        'is_spicy'   => 'boolean',
+        'is_popular' => 'boolean',
+    ];
 
     // every dish was created by a specific user (chef)
     public function chef(): BelongsTo 

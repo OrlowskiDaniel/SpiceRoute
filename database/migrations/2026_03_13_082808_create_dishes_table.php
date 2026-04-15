@@ -20,6 +20,8 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->string('category');
             $table->string('image')->nullable();
+            $table->boolean('is_spicy')->default(false);
+            $table->boolean('is_popular')->default(false);
         });
     }
 

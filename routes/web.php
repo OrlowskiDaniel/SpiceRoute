@@ -53,6 +53,13 @@ Route::get('/admin/orders', [OrderController::class, 'index']);
 Route::get('/admin/orders/{order}', [OrderController::class, 'show']);
 Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy']);
 Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
+
+    Route::get('/admin/dishes', [DishController::class, 'indexAdmin']);
+    Route::get('/admin/dishes/create', [DishController::class, 'create']);
+    Route::post('/admin/dishes', [DishController::class, 'store']);
+    Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
+    Route::get('/admin/dishes/{dish}/edit', [DishController::class, 'edit']);
+    Route::put('/admin/dishes/{dish}', [DishController::class, 'update']);
 });
 
 Route::get('/admin/users', [UserController::class, 'index']);
