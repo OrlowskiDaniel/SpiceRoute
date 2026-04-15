@@ -78,8 +78,9 @@ Make your own user
 
 php artisan tinker
 
-php\App\Models\User::create([
-    'name'     => 'Admin',
-    'email'    => 'manager@spiceroute.com',
-    'password' => bcrypt('your-password'),
+\App\Models\User::create([
+    'name'     => 'Admin User',
+    'email'    => 'admin@example.com',
+    'password' => bcrypt('password123'),
+    'role'     => 'admin', // Simply add the key here
 ]);
