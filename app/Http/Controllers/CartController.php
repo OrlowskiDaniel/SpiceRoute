@@ -16,13 +16,8 @@ class CartController extends Controller
 
     public function add(Dish $dish)
     {
+        // get the current cart 
         $cart = session()->get('cart', []);
-
-        dd($cart);
-
-        if (empty($cart)) {
-            return redirect('/cart')->with('error', 'Cart is empty!');
-        }
 
         if (isset($cart[$dish->id])) {
             $cart[$dish->id]['quantity']++;
@@ -35,9 +30,10 @@ class CartController extends Controller
             ];
         }
 
+        // save the updated
         session()->put('cart', $cart);
 
-        return back()->with('success', 'Added to cart!');
+        return redirect()->back()->with('success', 'Dish added to cart successfully!');
     }
 
     public function remove(Dish $dish)
