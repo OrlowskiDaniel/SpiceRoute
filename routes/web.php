@@ -60,6 +60,11 @@ Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStat
     Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
     Route::get('/admin/dishes/{dish}/edit', [DishController::class, 'edit']);
     Route::put('/admin/dishes/{dish}', [DishController::class, 'update']);
+
+    Route::get('/admin/reservations', [ReservationController::class, 'index']);
+    Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'destroy']);
+    Route::get('/admin/reservations/create', [ReservationController::class, 'adminCreate']);
+    Route::post('/admin/reservations', [ReservationController::class, 'adminStore']);
 });
 
 Route::get('/admin/users', [UserController::class, 'index']);

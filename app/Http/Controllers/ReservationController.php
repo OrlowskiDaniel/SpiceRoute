@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
+use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
@@ -15,13 +16,12 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request)
     {
         Reservation::create($request->validated());
-
         return redirect()->back()->with('success', 'Reservation created!');
     }
 
     public function index()
     {
-        $reservations = \App\Models\Reservation::latest()->get();
+        $reservations = Reservation::latest()->get();
         return view('admin.reservations.index', compact('reservations'));
     }
 
@@ -29,5 +29,17 @@ class ReservationController extends Controller
     {
         $reservation->delete();
         return back();
+    }
+
+    // admin booking
+    public function adminCreate()
+    {
+        return view('admin.reservations.create');
+    }
+
+    public function adminStore(StoreReservationRequest $request)
+    {
+        Reservation::create($request->validated());
+        return redirect('/admin/reservations')->with('success', 'Booking added!');
     }
 }

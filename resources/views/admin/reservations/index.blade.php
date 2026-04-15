@@ -10,7 +10,7 @@
         
         <div class="flex gap-3">
             <button class="bg-white border border-brand-100 px-4 py-2 rounded-xl font-bold text-sm hover:bg-brand-light transition">Export List</button>
-            <button class="btn-primary !py-2 !px-5 !text-sm">Manual Booking +</button>
+            <a href="/admin/reservations/create" class="btn-primary !py-2 !px-5 !text-sm">Manual Booking +</a>
         </div>
     </div>
 
