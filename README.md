@@ -77,6 +77,7 @@ Make your own user
 ''bash:
 
 php artisan tinker
+
 php\App\Models\User::create([
     'name'     => 'Admin',
     'email'    => 'manager@spiceroute.com',
