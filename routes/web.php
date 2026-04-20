@@ -1,7 +1,78 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DishController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
+
+// Public
+Route::get('/', [DishController::class, 'home'])->name('home');
+Route::get('/menu', [DishController::class, 'index'])->name('menu.index');
+
+Route::get('/contact', [ContactController::class, 'showForm']);
+Route::post('/contact', [ContactController::class, 'storeMessage']);
+
+Route::get('/reservations', [ReservationController::class, 'create']);
+Route::post('/reservations', [ReservationController::class, 'store']);
+
+
+// Orders
+Route::view('/checkout', 'orders.checkout');
+Route::post('/orders', [OrderController::class, 'store']);
+Route::view('/success', 'orders.success');
+
+// Cart
+Route::view('/cart', 'cart.index');
+Route::post('/cart/add/{dish}', [CartController::class, 'add']);
+Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart/remove/{dish}', [CartController::class, 'remove']);
+
+// Login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// middleware for admin routes
+Route::middleware('auth')->group(function () {
+    // Admin
+    Route::get('/admin', [DashboardController::class, 'index']);
+
+    Route::get('/admin/messages', [MessageController::class, 'index']);
+    Route::delete('/admin/messages/{message}', [MessageController::class, 'destroy']);
+    Route::post('/admin/messages/{message}/reply', [MessageController::class, 'reply']);
+
+    Route::get('/admin/dishes', [DishController::class, 'indexAdmin']);
+    Route::get('/admin/dishes/create', [DishController::class, 'create']);
+    Route::post('/admin/dishes', [DishController::class, 'store']);
+    Route::delete('/admin/dishes/{dish}', [DishController::class, 'destroy']);
+    Route::get('/admin/dishes/{dish}/edit', [DishController::class, 'edit']);
+    Route::put('/admin/dishes/{dish}', [DishController::class, 'update']);
+
+    Route::get('/admin/reservations', [ReservationController::class, 'index']);
+    Route::delete('/admin/reservations/{reservation}', [ReservationController::class, 'destroy']);
+    Route::get('/admin/reservations/create', [ReservationController::class, 'adminCreate']);
+    Route::post('/admin/reservations', [ReservationController::class, 'adminStore']);
+
+    Route::get('/admin/orders', [OrderController::class, 'index']);
+    Route::get('/admin/orders/{order}', [OrderController::class, 'show']);
+    Route::delete('/admin/orders/{order}', [OrderController::class, 'destroy']);
+    Route::post('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
+
+    Route::get('/admin/users', [UserController::class, 'index']);
+    Route::delete('/admin/users/{user}', [UserController::class, 'destroy']);
+    Route::get('/admin/users/create', [UserController::class, 'create']);
+    Route::post('/admin/users', [UserController::class, 'store']);
+    Route::get('/admin/users/{user}/edit', [UserController::class, 'edit']);
+    Route::put('/admin/users/{user}', [UserController::class, 'update']);
 });
+
+
+
+

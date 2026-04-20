@@ -2,24 +2,39 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Dish;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Reservation;
+use App\Models\ContactMessage;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Users
+        $users = User::factory(5)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Dishes
+        $dishes = Dish::factory(10)->create();
+
+        // Orders
+        $orders = Order::factory(5)->create();
+
+        // Order Items
+        foreach ($orders as $order) {
+            OrderItem::factory(3)->create([
+                'order_id' => $order->id,
+                'dish_id' => $dishes->random()->id,
+            ]);
+        }
+
+        // Reservations
+        Reservation::factory(5)->create();
+
+        // Contact Messages
+        ContactMessage::factory(5)->create();
     }
 }
